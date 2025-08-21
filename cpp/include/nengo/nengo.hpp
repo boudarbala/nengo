@@ -9,6 +9,7 @@
 #include "nengo/probe.hpp"
 #include "nengo/simulator.hpp"
 #include "nengo/neurons.hpp"
+#include "nengo/synapses.hpp"
 
 /**
  * Nengo C++ - A neural simulation library

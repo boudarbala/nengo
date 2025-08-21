@@ -9,3 +9,6 @@ target_link_libraries(communication_channel nengo_cpp)
 
 add_executable(ensemble_basics ensemble_basics.cpp)
 target_link_libraries(ensemble_basics nengo_cpp)
+
+add_executable(synapse_example synapse_example.cpp)
+target_link_libraries(synapse_example nengo_cpp)
