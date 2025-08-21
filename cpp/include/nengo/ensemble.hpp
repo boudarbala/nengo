@@ -15,16 +15,21 @@ namespace nengo {
  * - dimensions: The number of representational dimensions
  * - radius: The representational radius of the ensemble
  * - neuron_type: The model that simulates all neurons in the ensemble
+ * - label: A descriptive label for the object
+ * - seed: Random number seed
  */
 class Ensemble : public NengoObject {
 public:
-    Ensemble(int n_neurons, int dimensions, double radius = 1.0,
+    Ensemble(int n_neurons, 
+             int dimensions, 
+             double radius = 1.0,
              std::shared_ptr<NeuronType> neuron_type = nullptr,
-             const std::string& label = "");
+             const std::string& label = "",
+             std::optional<int> seed = std::nullopt);
 
     ~Ensemble() override = default;
 
-    // Getters
+    // Getters matching Python properties
     int getNeurons() const { return n_neurons_; }
     int getDimensions() const { return dimensions_; }
     double getRadius() const { return radius_; }
@@ -39,12 +44,23 @@ public:
     
     void setGainBias(const Eigen::MatrixXd& gain, const Eigen::VectorXd& bias);
 
+    // Size properties for connections (matching Python interface)
+    int getSizeIn() const { return dimensions_; }
+    int getSizeOut() const { return dimensions_; }
+
+    // String representation
+    std::string toString() const override;
+
     // Neuron representation
     class Neurons {
     public:
         explicit Neurons(Ensemble* ensemble) : ensemble_(ensemble) {}
         Ensemble* getEnsemble() const { return ensemble_; }
         int size() const { return ensemble_->getNeurons(); }
+        
+        // Size properties for connections
+        int getSizeIn() const { return ensemble_->getNeurons(); }
+        int getSizeOut() const { return ensemble_->getNeurons(); }
     private:
         Ensemble* ensemble_;
     };
