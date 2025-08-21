@@ -1,20 +1,30 @@
 #include "nengo/ensemble.hpp"
 #include "nengo/neurons.hpp"
 #include <random>
+#include <sstream>
 
 namespace nengo {
 
 Ensemble::Ensemble(int n_neurons, int dimensions, double radius,
                    std::shared_ptr<NeuronType> neuron_type,
-                   const std::string& label)
-    : NengoObject(label.empty() ? "Ensemble" : label),
+                   const std::string& label,
+                   std::optional<int> seed)
+    : NengoObject(label.empty() ? "Ensemble" : label, seed),
       n_neurons_(n_neurons),
       dimensions_(dimensions),
       radius_(radius),
-      neuron_type_(neuron_type ? neuron_type : std::make_shared<LIFRate>()),
+      neuron_type_(neuron_type ? neuron_type : std::make_shared<LIF>()),
       neurons(this) {
     
     initializeDefaults();
+}
+
+std::string Ensemble::toString() const {
+    std::ostringstream oss;
+    oss << "<Ensemble '" << getLabel() << "' " 
+        << n_neurons_ << " neurons, " 
+        << dimensions_ << " dimensions>";
+    return oss.str();
 }
 
 void Ensemble::setEncoders(const Eigen::MatrixXd& encoders) {

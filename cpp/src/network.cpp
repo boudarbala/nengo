@@ -3,11 +3,21 @@
 #include "nengo/node.hpp"
 #include "nengo/connection.hpp"
 #include "nengo/probe.hpp"
+#include <sstream>
 
 namespace nengo {
 
-Network::Network(const std::string& label)
-    : NengoObject(label.empty() ? "Network" : label) {}
+Network::Network(const std::string& label, std::optional<int> seed)
+    : NengoObject(label.empty() ? "Network" : label, seed) {}
+
+std::string Network::toString() const {
+    std::ostringstream oss;
+    oss << "<Network '" << getLabel() << "' "
+        << ensembles_.size() << " ensembles, "
+        << nodes_.size() << " nodes, "
+        << connections_.size() << " connections>";
+    return oss.str();
+}
 
 void Network::add(std::shared_ptr<Ensemble> ensemble) {
     ensembles_.push_back(ensemble);

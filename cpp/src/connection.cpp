@@ -1,6 +1,7 @@
 #include "nengo/connection.hpp"
 #include "nengo/ensemble.hpp"
 #include "nengo/node.hpp"
+#include <sstream>
 
 namespace nengo {
 
@@ -8,14 +9,22 @@ Connection::Connection(std::shared_ptr<NengoObject> pre,
                        std::shared_ptr<NengoObject> post,
                        TransformFunction function,
                        const Eigen::MatrixXd& transform,
-                       const std::string& label)
-    : NengoObject(label.empty() ? "Connection" : label),
+                       const std::string& label,
+                       std::optional<int> seed)
+    : NengoObject(label.empty() ? "Connection" : label, seed),
       pre_(pre),
       post_(post),
       function_(function),
       transform_(transform) {
     
     initializeTransform();
+}
+
+std::string Connection::toString() const {
+    std::ostringstream oss;
+    oss << "<Connection '" << getLabel() << "' from "
+        << pre_->getLabel() << " to " << post_->getLabel() << ">";
+    return oss.str();
 }
 
 Eigen::VectorXd Connection::compute(const Eigen::VectorXd& input) const {
