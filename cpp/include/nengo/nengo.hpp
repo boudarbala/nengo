@@ -22,6 +22,7 @@
 #include "nengo/cache.hpp"
 #include "nengo/params.hpp"
 #include "nengo/dists.hpp"
+#include "nengo/networks.hpp"
 
 /**
  * Nengo C++ - A neural simulation library

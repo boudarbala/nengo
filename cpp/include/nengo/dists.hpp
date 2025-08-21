@@ -4,6 +4,7 @@
 #include <random>
 #include <memory>
 #include <functional>
+#include <optional>
 
 namespace nengo {
 
