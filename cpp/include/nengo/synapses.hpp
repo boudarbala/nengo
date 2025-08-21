@@ -93,6 +93,16 @@ public:
                                 double dt = -1.0,
                                 double y0 = 0.0);
 
+    /**
+     * Get the time constant of the synapse.
+     * 
+     * For synapses that don't have a tau parameter, returns 0.001 (default dt).
+     * Should be overridden by specific synapse classes that have tau.
+     * 
+     * @return Time constant in seconds
+     */
+    virtual double getTau() const { return 0.001; }
+
     // String representation
     std::string toString() const override;
 };
