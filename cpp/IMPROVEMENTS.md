@@ -46,6 +46,17 @@ This work improves the translation from Python to C++ in the Nengo library to ma
 - ✅ Updated constructor to include `seed` parameter  
 - ✅ Added string representation
 
+**Synapses** (NEW):
+- ✅ Implemented complete synapse hierarchy matching Python version
+- ✅ Added `Synapse` base class with filtering capabilities
+- ✅ Added `LinearFilter` for general LTI systems
+- ✅ Added `Lowpass` synapse (most commonly used)
+- ✅ Added `Alpha` synapse for biologically realistic filtering
+- ✅ Added `Triangle` FIR synapse for finite impulse responses
+- ✅ Included analog-to-digital filter conversion (bilinear transform)
+- ✅ Added comprehensive filtering methods: `filt()` and polymorphic usage
+- ✅ Full compatibility with existing connection system
+
 ### 3. Documentation Improvements
 
 - ✅ Updated all class documentation to match Python docstring format
@@ -84,6 +95,21 @@ auto node = std::make_shared<nengo::Node>(nullptr, 2, std::nullopt, "input");
 // Python: nengo.Connection(node, ensemble, label="conn")
 auto conn = std::make_shared<nengo::Connection>(node, ensemble, nullptr, 
                                                Eigen::MatrixXd(), "conn");
+
+// NEW: Synapse usage
+// Python: nengo.Lowpass(0.1)
+auto lowpass = std::make_shared<nengo::Lowpass>(0.1);
+
+// Python: nengo.Alpha(0.05)  
+auto alpha = std::make_shared<nengo::Alpha>(0.05);
+
+// Python: nengo.Triangle(0.02)
+auto triangle = std::make_shared<nengo::Triangle>(0.02);
+
+// Filter signals just like in Python
+Eigen::VectorXd signal(100);
+signal.setRandom();
+Eigen::VectorXd filtered = lowpass->filt(signal, 0.001);
 ```
 
 ## Files Modified
@@ -100,6 +126,11 @@ auto conn = std::make_shared<nengo::Connection>(node, ensemble, nullptr,
 - `cpp/src/connection.cpp` - Updated implementation
 - `cpp/include/nengo/probe.hpp` - Updated Probe interface
 - `cpp/src/probe.cpp` - Updated implementation
+- `cpp/include/nengo/synapses.hpp` - NEW: Complete synapse system
+- `cpp/src/synapses.cpp` - NEW: Synapse implementations
+- `cpp/include/nengo/nengo.hpp` - Added synapses include
+- `cpp/tests/test_synapses.cpp` - NEW: Comprehensive synapse tests
+- `cpp/examples/synapse_example.cpp` - NEW: Synapse usage example
 
 ## Benefits
 
