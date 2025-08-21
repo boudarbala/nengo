@@ -5,6 +5,7 @@
 #include <any>
 #include <typeinfo>
 #include <memory>
+#include <vector>
 
 namespace nengo {
 
