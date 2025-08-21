@@ -18,3 +18,8 @@ add_executable(test_synapses test_synapses.cpp)
 target_link_libraries(test_synapses nengo_cpp)
 
 add_test(NAME synapse_tests COMMAND test_synapses)
+
+add_executable(test_networks test_networks.cpp)
+target_link_libraries(test_networks nengo_cpp)
+
+add_test(NAME networks_tests COMMAND test_networks)

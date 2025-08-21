@@ -12,3 +12,6 @@ target_link_libraries(ensemble_basics nengo_cpp)
 
 add_executable(synapse_example synapse_example.cpp)
 target_link_libraries(synapse_example nengo_cpp)
+
+add_executable(networks_example networks_example.cpp)
+target_link_libraries(networks_example nengo_cpp)
