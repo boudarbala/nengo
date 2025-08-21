@@ -13,7 +13,7 @@ Ensemble::Ensemble(int n_neurons, int dimensions, double radius,
       n_neurons_(n_neurons),
       dimensions_(dimensions),
       radius_(radius),
-      neuron_type_(neuron_type ? neuron_type : std::make_shared<LIFRate>()),
+      neuron_type_(neuron_type ? neuron_type : std::make_shared<LIF>()),
       neurons(this) {
     
     initializeDefaults();

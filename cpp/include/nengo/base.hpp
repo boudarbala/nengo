@@ -9,7 +9,22 @@ namespace nengo {
 
 /**
  * Base class for all Nengo objects.
+ * 
  * Equivalent to nengo.base.NengoObject in Python version.
+ * 
+ * Parameters
+ * ----------
+ * label : string, optional
+ *     A descriptive label for the object (default: "").
+ * seed : int, optional
+ *     Random number seed (default: None).
+ * 
+ * Attributes
+ * ----------
+ * label : string
+ *     A descriptive label for the object.
+ * seed : int or None
+ *     Random number seed.
  */
 class NengoObject {
 public:
@@ -41,8 +56,32 @@ protected:
 };
 
 /**
- * Base class for processes.
+ * A general system with input, output, and state.
+ * 
  * Equivalent to nengo.base.Process in Python version.
+ * 
+ * Parameters
+ * ----------
+ * default_size_in : int, optional
+ *     Sets the default size in for nodes using this process (default: 0).
+ * default_size_out : int, optional
+ *     Sets the default size out for nodes running this process (default: 1).
+ * default_dt : double, optional
+ *     Default simulation timestep (default: 0.001).
+ * seed : int, optional
+ *     Random number seed. Ensures random factors will be the same each run
+ *     (default: None).
+ * 
+ * Attributes
+ * ----------
+ * default_size_in : int
+ *     The default size in for nodes using this process.
+ * default_size_out : int
+ *     The default size out for nodes running this process.
+ * default_dt : double
+ *     Default simulation timestep.
+ * seed : int or None
+ *     Random number seed.
  */
 class Process {
 public:

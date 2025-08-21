@@ -10,13 +10,36 @@ namespace nengo {
 /**
  * A group of neurons that collectively represent a vector.
  * 
- * Parameters:
- * - n_neurons: The number of neurons
- * - dimensions: The number of representational dimensions
- * - radius: The representational radius of the ensemble
- * - neuron_type: The model that simulates all neurons in the ensemble
- * - label: A descriptive label for the object
- * - seed: Random number seed
+ * Equivalent to nengo.ensemble.Ensemble in Python version.
+ * 
+ * Parameters
+ * ----------
+ * n_neurons : int
+ *     The number of neurons.
+ * dimensions : int
+ *     The number of representational dimensions.
+ * radius : double, optional
+ *     The representational radius of the ensemble (default: 1.0).
+ * neuron_type : NeuronType, optional
+ *     The model that simulates all neurons in the ensemble.
+ *     If None, uses LIF neurons (default: LIF()).
+ * label : string, optional
+ *     A descriptive label for the object (default: "").
+ * seed : int, optional
+ *     Random number seed (default: None).
+ * 
+ * Attributes
+ * ----------
+ * n_neurons : int
+ *     The number of neurons.
+ * dimensions : int
+ *     The number of representational dimensions.
+ * radius : double
+ *     The representational radius of the ensemble.
+ * neuron_type : NeuronType
+ *     The neuron model used by this ensemble.
+ * neurons : Neurons
+ *     Direct access to the neurons in this ensemble.
  */
 class Ensemble : public NengoObject {
 public:
