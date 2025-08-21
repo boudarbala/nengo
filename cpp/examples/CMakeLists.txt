@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.10)
+
+# Add example executables
+add_executable(simple_example simple_example.cpp)
+target_link_libraries(simple_example nengo_cpp)
+
+add_executable(communication_channel communication_channel.cpp)
+target_link_libraries(communication_channel nengo_cpp)
+
+add_executable(ensemble_basics ensemble_basics.cpp)
+target_link_libraries(ensemble_basics nengo_cpp)
