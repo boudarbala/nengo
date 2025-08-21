@@ -10,6 +10,18 @@
 #include "nengo/simulator.hpp"
 #include "nengo/neurons.hpp"
 #include "nengo/synapses.hpp"
+#include "nengo/version.hpp"
+#include "nengo/exceptions.hpp"
+#include "nengo/rc.hpp"
+#include "nengo/config.hpp"
+#include "nengo/presets.hpp"
+#include "nengo/transforms.hpp"
+#include "nengo/processes.hpp"
+#include "nengo/solvers.hpp"
+#include "nengo/learning_rules.hpp"
+#include "nengo/cache.hpp"
+#include "nengo/params.hpp"
+#include "nengo/dists.hpp"
 
 /**
  * Nengo C++ - A neural simulation library
